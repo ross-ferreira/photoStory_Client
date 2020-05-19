@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Montserrat:wght@200;300;400;500;900&display=swap');
+
+
+.brand-logo, a {
+  /* font-family: 'Acme', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+  color: black!important;
+}
+
+nav {
+ background-color: white!important;
+}
+
+.my-card{
+  margin-top: 30px;
+}
+.auth-card {
+  padding:20px;
+  text-align: center;
+  max-width: 400px;
+  color: black;
+  margin: 10px auto;
+}
+
+/* auto puts the box centre aligned */
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #EF534F!important;
+  box-shadow: 0 1px 0 0 #EF534F!important;
+}
