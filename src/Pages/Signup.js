@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
@@ -6,7 +7,7 @@ const SignUp = () => {
         <>
             <div className="my-card">
                 <div className="card auth-card input-field">
-                    <h2 className="auth-title">Welcome</h2>
+                    <h2 className="auth-title">FotoStory</h2>
                     <input
                         type="text"
                         placeholder="name"
@@ -20,6 +21,11 @@ const SignUp = () => {
                         placeholder="password"
                     />
                     <button className="waves-effect waves-light btn red lighten-1">Signin</button>
+                    <h5>
+                        <Link to="signin">
+                            Already have an account?
+                        </Link>
+                    </h5>
                 </div>
             </div>
         </>

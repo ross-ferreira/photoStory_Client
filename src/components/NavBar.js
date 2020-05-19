@@ -6,11 +6,12 @@ const NavBar = () => {
     return(
         <nav>
         <div class="nav-wrapper">
-          <Link to="/" class="brand-logo">Photo Story</Link>
+          <Link to="/" class="brand-logo">FotoStory</Link>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><Link to="/signin">Login</Link></li>
             <li><Link to="/signup">Signup</Link></li>
             <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/createpost">New Post</Link></li>
           </ul>
         </div>
       </nav>

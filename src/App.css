@@ -30,3 +30,64 @@ nav {
   border-bottom: 1px solid #EF534F!important;
   box-shadow: 0 1px 0 0 #EF534F!important;
 }
+
+/* PROFILE PAGE CSS */
+
+.profile-wrap{
+  max-width: 550px;
+  margin:0px auto;
+}
+
+.upp-profile-wrapper{
+  display:flex;
+  justify-content: space-around;
+  margin:18px 0px;
+  border-bottom: 1px solid grey;
+}
+
+.profile-stats{
+  display:flex;
+  justify-content: space-around;
+  width:"108%";
+}
+.profile-stats h6{
+  margin:5px;
+}
+
+.profile-pic{
+  width:160px;
+  height:160px;
+  border-radius:80px;
+  margin:20px;
+}
+.gallery{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.gallery-img {
+  width:25%;
+  margin:5px 5px 5px 5px ;
+}
+
+/* HOME PAGE CSS */
+
+/* .home{
+  
+} */
+
+.home-card{
+  max-width: 500px;
+  height:max-content;
+  margin:26px auto;
+  padding:10px
+}
+
+/* NEW POST PAGE CSS */
+
+.input-filled{
+  margin:10px auto;
+  max-width: 500px;
+  padding:20px;
+  text-align: center;
+}

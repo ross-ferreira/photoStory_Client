@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Signin from './Pages/Signin';
 import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
+import CreatePost from './Pages/CreatePost';
 
 
 
@@ -25,6 +26,9 @@ function App() {
       </Route>
       <Route exact path="/signup">
         <Signup/>
+      </Route>
+      <Route exact path="/createpost">
+        <CreatePost/>
       </Route>
     </Router>
   );
