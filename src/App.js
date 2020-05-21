@@ -1,5 +1,6 @@
-import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React, { useEffect, createContext, useReducer } from 'react';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { reducer, initialState } from './data/reducer/reducer';
 import './App.css';
 
 import NavBar from './components/NavBar';
@@ -10,11 +11,23 @@ import Signup from './Pages/Signup';
 import CreatePost from './Pages/CreatePost';
 
 
+//Have to use useReducer with createContext-this now allows
+export const UserContext = createContext()
 
-function App() {
-  return (
-    <Router>
-      <NavBar/>
+//moved Routes into serprated function for useHistory
+
+const Routing = () => {
+  const history = useHistory();
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("user"));
+   if(user){
+     history.push("/")
+   } else {
+     history.push("/")
+   }
+  },[])
+  return(
+    <Switch>
       <Route exact path="/">
         <Home/>
       </Route>
@@ -30,7 +43,19 @@ function App() {
       <Route exact path="/createpost">
         <CreatePost/>
       </Route>
+  </Switch>
+  )
+}
+
+function App() {
+  const [state,dispath] = useReducer(reducer,initialState);
+  return (
+    <UserContext.Provider value={{state:state,dispath}}>
+    <Router>
+      <NavBar/>
+      <Routing/>
     </Router>
+    </UserContext.Provider>
   );
 }
 

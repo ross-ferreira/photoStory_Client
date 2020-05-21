@@ -91,3 +91,11 @@ nav {
   padding:20px;
   text-align: center;
 }
+
+/* SIGN UP PAGE CSS */
+
+#toast-container {
+  top:30px;
+  right:20px!important;
+  left:auto
+}
