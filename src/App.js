@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useReducer } from 'react';
+import React, { useEffect, createContext, useReducer,useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { reducer, initialState } from './data/reducer/reducer';
 import './App.css';
@@ -18,10 +18,12 @@ export const UserContext = createContext()
 
 const Routing = () => {
   const history = useHistory();
+  const {state,dispatch} = useContext(UserContext);
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("user"));
    if(user){
-     history.push("/")
+     dispatch({type:"USER",payload:user})
+    //  history.push("/")
    } else {
      history.push("/")
    }
@@ -48,9 +50,9 @@ const Routing = () => {
 }
 
 function App() {
-  const [state,dispath] = useReducer(reducer,initialState);
+  const [state,dispatch] = useReducer(reducer,initialState);
   return (
-    <UserContext.Provider value={{state:state,dispath}}>
+    <UserContext.Provider value={{state:state,dispatch}}>
     <Router>
       <NavBar/>
       <Routing/>

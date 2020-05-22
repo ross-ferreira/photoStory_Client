@@ -1,9 +1,30 @@
-import React from 'react';
+import React,{ useEffect, useState, useContext } from 'react';
+import { UserContext } from '../App';
 
 const Profile = () => {
+    const [dataUserPics, setDataUserPics] = useState([]);
+    const {state,dispatch} = useContext(UserContext);
 
+    console.log(state)
+
+
+    useEffect(()=>{
+        fetch('/mypost', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(data => {
+                if(!data.error){
+                // console.log(data);
+                setDataUserPics(data.mypost)
+                }
+            })
+      },[])
     return(
-        <div className="profile-wrap">
+
+        <>
+        { state && dataUserPics ? <div className="profile-wrap">
             <div className="upp-profile-wrapper">
                 <div>
                     <img className="profile-pic"
@@ -12,7 +33,7 @@ const Profile = () => {
                 </div>
                 <div>
                     <h4>
-                        -My Name-
+                       {state.name}
                     </h4>
                     <div className="profile-stats">
                         <h6>40 posts</h6>
@@ -22,14 +43,13 @@ const Profile = () => {
                 </div>
             </div>
             <div className="gallery">
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
-                <img className="gallery-img" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
+                {dataUserPics.map((item,index)=>{
+                  return <img key={index} className="gallery-img" src={item.photo}/>
+                })}
             </div>
         </div>
+        : <p>"Loading"</p> }
+        </>
     )
 }
 

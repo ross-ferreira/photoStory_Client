@@ -4,7 +4,7 @@ import {UserContext} from '../App'
 import M from 'materialize-css';
 
 const Signin = () => {
-    const {state,dispatch} = useContext(UserContext)
+    const {state,dispatch} = useContext(UserContext);
     const history = useHistory();
     const[password,setPassword] = useState("");
     const[email,setEmail] = useState("");
@@ -33,7 +33,7 @@ const Signin = () => {
                         //add local storage for token for authlogin
                         localStorage.setItem("jwt",data.token);
                         localStorage.setItem("user",JSON.stringify(data.user));
-                        dispatch({type:"USER",payload:data.user})
+                        dispatch({type:"USER",payload:data.user});
                         M.toast({html:"Signed in Successfully",classes:"#64dd17 light-green accent-4"});
                         history.push("/");
                     }
@@ -54,7 +54,7 @@ const Signin = () => {
                         onChange={(e)=>{setEmail(e.target.value)}}
                     />
                     <input
-                        type="text"
+                        type="password"
                         placeholder="password"
                         value={password}
                         onChange={(e)=>{setPassword(e.target.value)}}
