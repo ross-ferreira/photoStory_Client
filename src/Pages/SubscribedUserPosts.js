@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../App';
 import M from 'materialize-css';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const Home = () => {
+const SubscribedUserPosts = () => {
     const { state, dispath } = useContext(UserContext);
     const [dataImages, setDataImages] = useState([]);
     //Dont need to check if user has TOKEN- ALREADY Logged IN
     useEffect(() => {
-        fetch('/allpost', {
+        fetch('/subscribeposts ', {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }
@@ -119,9 +119,8 @@ const Home = () => {
     }
 
     return (
-        <>
-        <div className="home">
-              {dataImages.map((item, index) => {
+        <div className="home">   
+            {dataImages.map((item, index) => {
                 return (
                     <div key={item._id} className="card home-card">
                         <h5><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id: "/profile"}>{item.postedBy.name}</Link>{item.postedBy._id == state._id && <i style={{ float: "right" }} className="material-icons" onClick={()=>deletePost(item._id)}>delete</i>}</h5>
@@ -158,21 +157,9 @@ const Home = () => {
                     </div>
                 )
             })}
-            
 
         </div>
-        </>
     )
 }
 
-export default Home
-
-// "_id":"5ec7c3a8ea923aaa085b9e89",
-// "text":"yes",
-// "postedBy":"5ec409d53ac3f8060eb667ea"
-
-// {"_id":"5ec7c5fc88bf08f452a451ac",
-// "text":"tessssst",
-// "postedBy":{
-//     "_id":"5ec409d53ac3f8060eb667ea",
-//     "name":"test"}}
+export default SubscribedUserPosts

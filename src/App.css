@@ -103,3 +103,14 @@ nav {
   right:20px!important;
   left:auto
 }
+
+/* Icons */
+
+.material-icons:hover{
+  cursor: pointer;
+}
+
+/* Nav Modal */
+.collection-item{
+  width:100%;
+}

@@ -9,6 +9,10 @@ import Signin from './Pages/Signin';
 import Profile from './Pages/Profile';
 import Signup from './Pages/Signup';
 import CreatePost from './Pages/CreatePost';
+import UsersProfile from './Pages/UsersProfile';
+import SubscribedUserPosts from './Pages/SubscribedUserPosts';
+import ResetPassword from './Pages/ResetPassword';
+import NewPassword from './Pages/NewPassword';
 
 
 //Have to use useReducer with createContext-this now allows
@@ -23,9 +27,10 @@ const Routing = () => {
     const user = JSON.parse(localStorage.getItem("user"));
    if(user){
      dispatch({type:"USER",payload:user})
-    //  history.push("/")
    } else {
-     history.push("/")
+     if(!history.location.pathname.startsWith('/resetpassword')){
+      history.push("/signin")
+     }
    }
   },[])
   return(
@@ -33,17 +38,29 @@ const Routing = () => {
       <Route exact path="/">
         <Home/>
       </Route>
-      <Route exact path="/signin">
+      <Route path="/signin">
         <Signin/>
       </Route>
       <Route exact path="/profile">
         <Profile/>
       </Route>
-      <Route exact path="/signup">
+      <Route path="/signup">
         <Signup/>
       </Route>
-      <Route exact path="/createpost">
+      <Route path="/createpost">
         <CreatePost/>
+      </Route>
+      <Route path="/profile/:userid">
+        <UsersProfile/>
+      </Route>
+      <Route path="/mysubscribedposts">
+        <SubscribedUserPosts/>
+      </Route>
+      <Route exact path="/resetpassword">
+        <ResetPassword/>
+      </Route>
+      <Route path="/resetpassword/:token">
+        <NewPassword/>
       </Route>
   </Switch>
   )
